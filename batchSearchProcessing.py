@@ -24,7 +24,8 @@ inputFolder = dataFolder/"Input"
 outputFolder = dataFolder/"Output"
 
 batchPath = inputFolder/"Targeted ingredients batch.xlsx"
-batchOG = pd.read_excel(batchPath, "Main Data", dtype="string", usecols=[0, 2, 3, 4])
+batchOG = pd.read_excel(batchPath, "Main Data", dtype="string", usecols=[0, 2, 3, 4, 5])
+batchOG.loc[batchOG.SMILES.str.isspace(), "SMILES"] = ""
 # %%
 found1 = batchOG.query("DTXSID.notna()")
 notFound = (batchOG.query("DTXSID.isna()")
